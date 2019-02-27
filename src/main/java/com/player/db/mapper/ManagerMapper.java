@@ -9,6 +9,7 @@ import org.mapstruct.factory.Mappers;
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface ManagerMapper {
     ManagerMapper INSTANCE = Mappers.getMapper(ManagerMapper.class);
+
     ManagerDTO managerToManagerDTO(Manager manager);
     Manager managerDTOManager(ManagerDTO managerDTO);
 

@@ -8,8 +8,8 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class PlayerDTO extends ContactDTO {
 
-    private ManagerDTO managerDTO;
-    private LicenseDTO licenseDTO;
-    private NationalityDTO nationalityDTO;
+    private ManagerDTO manager;
+    private LicenseDTO license;
+    private NationalityDTO nationality;
 
 }

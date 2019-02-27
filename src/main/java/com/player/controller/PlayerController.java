@@ -29,12 +29,15 @@ public class PlayerController {
         List<Player> players = InitData.createPlayer();
         List<PlayerDTO> playerDTOS = new ArrayList<>();
 
-        players.forEach(e -> {
-            playerDTOS.add(PlayerMapper.INSTANCE.playerToPlayerDTO(e)
-                    .setLicenseDTO(LicenseMapper.INSTANCE.licenseToLicenseDTO(e.getLicense()))
-                    .setManagerDTO(ManagerMapper.INSTANCE.managerToManagerDTO(e.getManager()))
-                    .setNationalityDTO(NationalityMapper.INSTANCE.nationalityToNationalityDTO(e.getNationality())));
-        });
+//        players.forEach(e -> {
+//            playerDTOS.add(PlayerMapper.INSTANCE.playerToPlayerDTO(e)
+//                    .setLicenseDTO(LicenseMapper.INSTANCE.licenseToLicenseDTO(e.getLicense()))
+//                    .setManagerDTO(ManagerMapper.INSTANCE.managerToManagerDTO(e.getManager()))
+//                    .setNationalityDTO(NationalityMapper.INSTANCE.nationalityToNationalityDTO(e.getNationality())));
+//        });
+
+        players.forEach(e -> playerDTOS.add(PlayerMapper.INSTANCE.playerToPlayerDTO(e)));
+
         return ResponseEntity.ok(playerDTOS);
     }
 

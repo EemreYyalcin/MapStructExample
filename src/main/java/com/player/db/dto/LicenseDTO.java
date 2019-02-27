@@ -7,7 +7,7 @@ import java.util.Date;
 @Data
 public class LicenseDTO {
 
-    private TeamDTO teamDTO;
+    private TeamDTO team;
     private Date startDate;
 
 }

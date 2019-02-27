@@ -9,6 +9,7 @@ import org.mapstruct.factory.Mappers;
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface TeamMapper {
     TeamMapper INSTANCE = Mappers.getMapper(TeamMapper.class);
+
     TeamDTO teamToTeamDTO(Team team);
     Team teamDTOToTeam(TeamDTO teamDTO);
 
