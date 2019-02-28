@@ -10,7 +10,7 @@ import java.text.SimpleDateFormat;
 public class PlayerApplication {
 
     @Bean
-    public SimpleDateFormat dateFormat(){
+    public SimpleDateFormat dateFormat() {
         return new SimpleDateFormat("DD.MM.YYYY");
     }
 

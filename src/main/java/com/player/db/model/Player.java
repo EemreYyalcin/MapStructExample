@@ -12,11 +12,11 @@ import java.util.List;
 @RedisHash("Player")
 public class Player extends Contact {
 
-    private Manager manager;
-    private License license;
-    private Nationality nationality;
+    private String managerId;
+    private String licenseId;
+    private String nationalityId;
 
-    private List<Team> oldTeams = new ArrayList<>();
+    private List<String> oldTeamIds = new ArrayList<>();
 
 
 }

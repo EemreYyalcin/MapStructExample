@@ -4,14 +4,9 @@ import com.player.db.dto.NationalityDTO;
 import com.player.db.model.Nationality;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
-import org.mapstruct.factory.Mappers;
 
-@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE)
-public interface NationalityMapper {
-    NationalityMapper INSTANCE = Mappers.getMapper(NationalityMapper.class);
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
+public abstract class NationalityMapper {
 
-    NationalityDTO nationalityToNationalityDTO(Nationality nationality);
-
-    Nationality nationalityDTOToNationality(NationalityDTO nationalityDTO);
-
+    public abstract NationalityDTO nationalityToNationalityDTO(Nationality nationality);
 }

@@ -2,33 +2,35 @@ package com.player.db.mapper;
 
 import com.player.db.dto.PlayerDTO;
 import com.player.db.model.Player;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
-import org.mapstruct.ReportingPolicy;
-import org.mapstruct.factory.Mappers;
+import com.player.service.LicenseService;
+import com.player.service.ManagerService;
+import com.player.service.NationalityService;
+import com.player.service.TeamService;
+import lombok.Setter;
+import org.mapstruct.*;
 
 import java.util.List;
 
-@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE)
-public interface PlayerMapper {
-    PlayerMapper INSTANCE = Mappers.getMapper(PlayerMapper.class);
+@Setter
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring", uses = {TeamService.class, LicenseService.class, ManagerService.class, NationalityService.class}, injectionStrategy = InjectionStrategy.FIELD)
+public abstract class PlayerMapper {
+
+    protected ManagerMapper managerMapper;
+    protected LicenseMapper licenseMapper;
+    protected TeamMapper teamMapper;
+    protected NationalityMapper nationalityMapper;
+
+    protected LicenseService licenseService;
+    protected ManagerService managerService;
+    protected NationalityService nationalityService;
+    protected TeamService teamService;
 
     @Mappings({
-            @Mapping(target = "license", expression = "java(LicenseMapper.INSTANCE.licenseToLicenseDTO(player.getLicense()))"),
-            @Mapping(target = "manager", expression = "java(ManagerMapper.INSTANCE.managerToManagerDTO(player.getManager()))"),
-            @Mapping(target = "nationality", expression = "java(NationalityMapper.INSTANCE.nationalityToNationalityDTO(player.getNationality()))"),
-            @Mapping(target = "oldTeams", expression = "java(TeamMapper.INSTANCE.teamListToTeamDTOList(player.getOldTeams()))")
+            @Mapping(target = "license", expression = "java(licenseMapper.licenseToLicenseDTO(licenseService.findById(player.getLicenseId())))"),
+            @Mapping(target = "manager", expression = "java(managerMapper.managerToManagerDTO(managerService.findById(player.getManagerId())))"),
+            @Mapping(target = "nationality", expression = "java(nationalityMapper.nationalityToNationalityDTO(nationalityService.findById(player.getNationalityId())))"),
+            @Mapping(target = "oldTeams", expression = "java(teamMapper.teamListToTeamDTOList(teamService.findByIds(player.getOldTeamIds())))")
     })
-    PlayerDTO playerToPlayerDTO(Player player);
-
-    @Mappings({
-            @Mapping(target = "license", expression = "java(LicenseMapper.INSTANCE.licenseDTOToLicense(playerDTO.getLicense()))"),
-            @Mapping(target = "manager", expression = "java(ManagerMapper.INSTANCE.managerDTOToManager(playerDTO.getManager()))"),
-            @Mapping(target = "nationality", expression = "java(NationalityMapper.INSTANCE.nationalityDTOToNationality(playerDTO.getNationality()))"),
-            @Mapping(target = "oldTeams", expression = "java(TeamMapper.INSTANCE.teamDTOListToTeamList(playerDTO.getOldTeams()))")
-    })
-    Player playerDTOToPlayer(PlayerDTO playerDTO);
-
-    List<PlayerDTO> playerListToPlayerDTOList(List<Player> players);
+    public abstract PlayerDTO playerToPlayerDTO(Player player);
+    public abstract List<PlayerDTO> playerListToPlayerDTOList(List<Player> players);
 }
