@@ -13,6 +13,7 @@ public interface LicenseMapper {
 
     @Mapping(target = "team", expression = "java(TeamMapper.INSTANCE.teamToTeamDTO(license.getTeam()))")
     LicenseDTO licenseToLicenseDTO(License license);
+
     License licenseDTOToLicense(LicenseDTO licenseDTO);
 
 }

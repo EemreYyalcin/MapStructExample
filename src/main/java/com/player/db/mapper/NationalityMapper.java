@@ -11,6 +11,7 @@ public interface NationalityMapper {
     NationalityMapper INSTANCE = Mappers.getMapper(NationalityMapper.class);
 
     NationalityDTO nationalityToNationalityDTO(Nationality nationality);
+
     Nationality nationalityDTOToNationality(NationalityDTO nationalityDTO);
 
 }

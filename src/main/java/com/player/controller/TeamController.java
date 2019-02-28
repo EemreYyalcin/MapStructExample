@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 public class TeamController {
 
     @GetMapping("/all")
-    public ResponseEntity<TeamDTO> getTeam(){
+    public ResponseEntity<TeamDTO> getTeam() {
         Team team = new Team().setName("Fenerbahçe").setColor1("Navy Blue").setColor2("Yellow");
         team.setId(1L);
         TeamDTO teamDTO = TeamMapper.INSTANCE.teamToTeamDTO(team);
@@ -19,11 +19,10 @@ public class TeamController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Team> addTeam(@RequestBody TeamDTO teamDTO ){
+    public ResponseEntity<Team> addTeam(@RequestBody TeamDTO teamDTO) {
         Team team = TeamMapper.INSTANCE.teamDTOToTeam(teamDTO);
         return ResponseEntity.ok(team);
     }
-
 
 
 }

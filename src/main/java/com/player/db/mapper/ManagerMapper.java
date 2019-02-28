@@ -11,9 +11,8 @@ public interface ManagerMapper {
     ManagerMapper INSTANCE = Mappers.getMapper(ManagerMapper.class);
 
     ManagerDTO managerToManagerDTO(Manager manager);
-    Manager managerDTOManager(ManagerDTO managerDTO);
 
-
+    Manager managerDTOToManager(ManagerDTO managerDTO);
 
 
 }

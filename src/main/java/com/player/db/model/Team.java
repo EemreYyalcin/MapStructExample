@@ -5,7 +5,7 @@ import lombok.experimental.Accessors;
 
 @Accessors(chain = true)
 @Data
-public class Team extends BaseModel{
+public class Team extends BaseModel {
 
     private String name;
     private String color1;

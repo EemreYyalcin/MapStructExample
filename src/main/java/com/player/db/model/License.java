@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Data
 @Accessors(chain = true)
-public class License extends BaseModel{
+public class License extends BaseModel {
 
     private Team team;
     private Date startDate;
